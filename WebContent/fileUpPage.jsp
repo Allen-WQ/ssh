@@ -12,7 +12,7 @@
 <s:form action="fileUp" method="post"  enctype="multipart/form-data">
 	<s:textfield name="title" label="文件标题"/>
 	<s:file name="upload" label="选择文件"/>
-	<s:submit value="上传"/>
+	<s:submit value="上传文件"/>
 </s:form>
 </body>
 </html>
