@@ -8,7 +8,6 @@
 </head>
 <body>
 <form action="formto" method="get">
-
 <input type="submit" value="提交"/>
 </form>
 </body>
