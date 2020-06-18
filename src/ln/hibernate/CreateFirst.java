@@ -23,7 +23,8 @@ public class CreateFirst {
 		
 		Dog dog=new Dog();
 		dog.setAge(12);
-		dog.setName("wangcai");
+		dog.getName().setLastName("wangcai");
+		dog.getName().setNowName("xiaoqiang");
 		dog.setSex("nan");
 		dog.setState(DogClassifl.YOUNG);
 		dog.setBirth(new Date());

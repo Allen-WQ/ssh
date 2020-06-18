@@ -7,10 +7,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,7 +26,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.SortNatural;
+import org.hibernate.annotations.SortComparator;
 
 import ln.enumPack.DogClassifl;
 
@@ -34,7 +36,8 @@ public class Dog {
 	@GenericGenerator(name="aa",strategy="uuid")
 	@GeneratedValue(generator="aa")
 	private String id;
-	private String name;
+	@Embedded
+	private Name name=new Name();
 	private String sex;
 	private int age;
 	@Formula("(select concat(name,sex) from dog where id=id)")
@@ -66,6 +69,7 @@ public class Dog {
 	@MapKeyClass(String.class)
 	@Column(name="val_inf")
 	private Map<String,Float> body=new HashMap<>();
+	
 	
 	public Map<String, Float> getBody() {
 		return body;
@@ -115,10 +119,11 @@ public class Dog {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
+
+	public Name getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public void setName(Name name) {
 		this.name = name;
 	}
 	public String getSex() {

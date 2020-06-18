@@ -24,9 +24,18 @@
 <!-- 			是否格式化输出sql语句 -->
 			<property name="hibernate.format_sql">false</property>
 <!-- 			update表示检测数据可表与类的映射是否一致不一致的话就更新表结构  没有表的话就创建表 -->
-			<property name="hibernate.hbm2ddl.auto">create</property>
+			<property name="hibernate.hbm2ddl.auto">update</property>
 <!-- 			映射配置文件的位置 -->
 <!-- 			<mapping resource="ln/hibernate/modle/customer.hbm.xml"></mapping> -->
-			<mapping class="ln.hibernate.Dog"/>
+<!-- 			<mapping class="ln.hibernate.Dog"/> -->
+<!-- 			<mapping class="ln.hibernate1.Student"/> -->
+<!-- 			<mapping class="ln.hibernate.lianhezhujian.Person"/> -->
+<!-- 			<mapping class="ln.hibernate.gunalianyingshe.LocalInf"/> -->
+<!-- 			<mapping class="ln.hibernate.gunalianyingshe.Person"/> -->
+<!-- 			<mapping class="ln.hibernate.gunalianyingshe.Address"/> -->
+			<mapping class="ln.hibernate.yingshecelue.Customer"/>
+			<mapping class="ln.hibernate.yingshecelue.Employee"/>
+			<mapping class="ln.hibernate.yingshecelue.Manager"/>
+			<mapping class="ln.hibernate.yingshecelue.Person"/>
 		</session-factory>
 	</hibernate-configuration>
