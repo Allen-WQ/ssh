@@ -18,7 +18,7 @@ public class TwoInterceptor implements Interceptor{
 	@Override
 	public String intercept(ActionInvocation arg0) throws Exception {
 		System.out.println("进入第二个拦截器");
-//		arg0.invoke();
+		arg0.invoke();
 		return "login";
 	}
 

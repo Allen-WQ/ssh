@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -16,6 +19,7 @@ public class StrutsTest extends ActionSupport{
 	private List list;
 	private Map map;
 	private Dog dog;
+	private ApplicationContext ctx;
 	
 	public int getLen() {
 		return len;
@@ -68,6 +72,8 @@ public class StrutsTest extends ActionSupport{
 	
 	@Override
 	public String execute() throws Exception {
+		System.out.println(ApplicationContextUtil.getCtx().getBean("d"));
+//		System.out.println(this);
 		System.out.println("aaaa");
 		return "success";
 	}
@@ -97,4 +103,9 @@ public class StrutsTest extends ActionSupport{
 		return "success";
 		
 	}
+	public String form() {
+		System.out.println("aaaa");
+		return "success";
+	}
+	
 }

@@ -1,58 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE struts PUBLIC
-        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-        "http://struts.apache.org/dtds/struts-2.0.dtd">
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+<!-- 文件上传大小限制 -->
 <constant name="struts.multipart.maxSize" value="314572800"></constant> <!-- 允许300M -->
-    <package name="default" namespace="/" extends="struts-default">
-    
-    <interceptors>
-    	<interceptor name="first" class="ln.struts.InterceptorClass"/>
-    	<interceptor name="two" class="ln.struts.TwoInterceptor"/>
-    	<interceptor-stack name="inStack">
-    		<interceptor-ref name="first" />
-    		<interceptor-ref name="two"/>
-    	</interceptor-stack>
-    </interceptors>
+<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true" /> -->
    
-        <default-action-ref name="defaultAction"/>
-        <action name="defaultAction">
-        	<result>/default.jsp</result>
-        </action>
+    <package name="default" namespace="/" extends="struts-default">
+    		
+    		<action name="user_*" class="ln.struts.StrutsTest" method="{1}">
+				<result name="success">/form.jsp</result>
+				<allowed-methods>form</allowed-methods>
+			</action>
+<!--     <interceptors> -->
+<!--     	<interceptor name="first" class="ln.struts.InterceptorClass"/> -->
+<!--     	<interceptor name="two" class="ln.struts.TwoInterceptor"/> -->
+<!--     	<interceptor-stack name="inStack"> -->
+<!--     		<interceptor-ref name="first" /> -->
+<!--     		<interceptor-ref name="two"/> -->
+<!--     	</interceptor-stack> -->
+<!--     </interceptors> -->
+   
+<!--         <default-action-ref name="defaultAction"/> -->
+<!--         <action name="defaultAction"> -->
+<!--         	<result>/default.jsp</result> -->
+<!--         </action> -->
+			
 <!--         <action name="formto"> -->
 <!--             <result >/index.jsp</result> -->
 <!--         </action> -->
-         <action name="form" class="ln.struts.StrutsTest" method="execute">
-         	<interceptor-ref name="inStack"/>
-            <result name="success">/form.jsp</result>
-            <result name="login">/login.jsp</result>
-        </action>
+<!--          <action name="form" class="ln.struts.StrutsTest" method="execute"> -->
+<!--          	<interceptor-ref name="inStack"/> -->
+<!--             <result name="success">/form.jsp</result> -->
+<!--             <result name="login">/login.jsp</result> -->
+<!--         </action> -->
         
 <!--         文件上传 -->
-		<action name="fileUpPage" class="ln.struts.StrutsTest" method="fileUpPage">
-			<result>/fileUpPage.jsp</result>
-		</action>
+<!-- 		<action name="fileUpPage" class="ln.struts.StrutsTest" method="fileUpPage"> -->
+<!-- 			<result>/fileUpPage.jsp</result> -->
+<!-- 		</action> -->
 		
-		<action name="fileUp" class="ln.struts.FileUp" method="execute">
-			<param name="savePath">/uploadPath</param>
-			<result name="success">/fileUpOk.jsp</result>
-		</action>
+<!-- 		<action name="fileUp" class="ln.struts.FileUp" method="execute"> -->
+<!-- 			<param name="savePath">/uploadPath</param> -->
+<!-- 			<result name="success">/fileUpOk.jsp</result> -->
+<!-- 		</action> -->
     </package>
     
     <package name="jsonPackage" namespace="/json" extends="json-default">
-    	<action name="getJsonData" class="ln.struts.JsonClass">
-    		<result name="success" type="json"></result>
-    	</action>
-    	<action name="login" class="ln.struts.StrutsTest" method="login">
-    		<result name="success">/login.jsp</result>
-    	</action>
-    	<action name="loginSubmit" class="ln.struts.StrutsTest" method="loginSubmit">
-    		<result>/welcome.jsp</result>
-    	</action>
+<!--     	<action name="getJsonData" class="ln.struts.JsonClass"> -->
+<!--     		<result name="success" type="json"></result> -->
+<!--     	</action> -->
+<!--     	<action name="login" class="ln.struts.StrutsTest" method="login"> -->
+<!--     		<result name="success">/login.jsp</result> -->
+<!--     	</action> -->
+<!--     	<action name="loginSubmit" class="ln.struts.StrutsTest" method="loginSubmit"> -->
+<!--     		<result>/welcome.jsp</result> -->
+<!--     	</action> -->
 <!--     	重定向到另一个action -->
-    	<action name="forword">
-    		<result type="chain">loginSubmit</result>
-    	</action>
+<!--     	<action name="forword"> -->
+<!--     		<result type="chain">loginSubmit</result> -->
+<!--     	</action> -->
     </package>
 </struts>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:util="http://www.springframework.org/schema/util"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+     http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    autowire="byName" 通过bean的ID自动注入  depends-on在本bean实例化之前强制实例化目标bean-->
+<!--    <bean id="person" class="ln.spring.start.impl.Chinese" depends-on="dog"> -->
+<!--    		<property name="name" value="zhangsan"/> -->
+<!--    	<property name="dog" ref="dog"/> -->
+<!-- 		<constructor-arg ref="dog"/> -->
+<!-- 		<constructor-arg value="zhangsan"/> -->
+<!--    </bean> -->
+<!--    <bean id="dog" class="ln.spring.start.impl.YoungDog"> -->
+<!--    		<property name="type" value="youngDog"/> -->
+<!--    		<property name="name" value="wangcai"/> -->
+<!--    		<property name="age" value="12"/> -->
+<!--    </bean> -->
+
+<!-- 	singleton依赖prototype的bean -->
+<!--    		<bean id="abPerson" class="ln.spring.test.AbPerson"> -->
+<!--    			<lookup-method name="getCat" bean="cat"/> -->
+<!--    		</bean> -->
+<!--    		<bean id="cat" class="ln.spring.test.Cat" scope="prototype" p:name="机器猫"/> -->
+
+<!-- 	使用PropertyPathFactoryBean执行指定bean的get方法 -->
+<!-- 		<bean id="propertyPathFactoryBean" class="ln.spring.test.TestPropertyPathFactoryBean" p:name="zhnagsan" p:age="12" p:cat-ref="propertyPathFactoryBeanCat"/> -->
+<!-- 		<bean id="propertyPathFactoryBeanCat" class="ln.spring.test.Cat" p:name="机器猫"/> -->
+<!-- 		<bean id="getName" class="org.springframework.beans.factory.config.PropertyPathFactoryBean" p:targetBeanName="propertyPathFactoryBean" p:propertyPath="name"/> -->
+<!-- 		有两种设置目标bean的方法 targetBeanName 后面直接跟bean的id值  targetObject 要直接传入对象 可以跟嵌套bean -->
+<!-- 		<bean id="getAge" class="org.springframework.beans.factory.config.PropertyPathFactoryBean" p:propertyPath="age"> -->
+<!-- 			<property name="targetObject"> -->
+<!-- 				<bean class="ln.spring.test.TestPropertyPathFactoryBean" p:name="zhnagsan" p:age="12" p:cat-ref="propertyPathFactoryBeanCat"/> -->
+<!-- 			</property> -->
+<!-- 		</bean> -->
+<!-- 		<bean id="getCatName" class="org.springframework.beans.factory.config.PropertyPathFactoryBean" p:targetBeanName="propertyPathFactoryBean" p:propertyPath="cat.name"/> -->
+<!-- 		<bean id="propertyPathFactoryBeanSetName" class="ln.spring.test.TestPropertyPathFactoryBean"  p:age="12" p:cat-ref="propertyPathFactoryBeanCat"> -->
+<!-- 			<property name="name"> -->
+<!-- 				执行某个bean的get方法把方法路径作为ID 直接执行 -->
+<!-- 				<bean id="propertyPathFactoryBeanCat.name" class="org.springframework.beans.factory.config.PropertyPathFactoryBean"/> -->
+<!-- 			</property> -->
+<!-- 		</bean> -->
+<!-- 		简化配置  为propertyPathFactoryBean1的name设值为propertyPathFactoryBeanCat的name值-->
+<!-- 		<bean id="propertyPathFactoryBean1" class="ln.spring.test.TestPropertyPathFactoryBean"> -->
+<!-- 			<property name="name"> -->
+<!-- 				<util:property-path path="propertyPathFactoryBeanCat.name"/> -->
+<!-- 			</property> -->
+<!-- 		</bean> -->
+
+
+<!-- 		使用FieldRetrievingFactoryBean 获取类属性或者对象属性 注意获取属性只能是public-->
+<!-- 		<bean id="testFieldRetrievingFactoryBean" class="ln.spring.test.TestFieldRetrievingFactoryBean" p:name="zhnagsan" p:age="12"/> -->
+<!-- 		<bean id="FieldRetrievingFactoryBeanCat" class="ln.spring.test.Cat" p:name="机器猫"/>  -->
+<!-- 		注意获取name静态属性时  name静态属性必须是public的 不需要get方法-->
+<!-- 		<bean id="getFiledName" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean" p:targetClass="ln.spring.test.TestFieldRetrievingFactoryBean" p:targetField="name"/> -->
+<!-- 		<bean id="getFiledAge" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean" p:targetField="age"> -->
+<!-- 			<property name="targetObject">  -->
+<!-- 				<bean  class="ln.spring.test.TestFieldRetrievingFactoryBean" p:name="zhnagsan" p:age="12"/> -->
+<!-- 			</property> -->
+<!-- 		</bean> -->
+<!-- 		简单配置 获取指定类的静态属性-->
+<!-- 		<util:constant id="getEasyName" static-field="ln.spring.test.TestFieldRetrievingFactoryBean.name"/> -->
+<!--    init-method与destroy-method指定方法的时候不需要加（） 只指定方法的名称 -->
+<!--    <bean id="getSpring" class="ln.spring.test.GetSpring" init-method="initMethod" destroy-method="destoryMethod" scope="prototype"/>  -->
+   
+<!--     	bean后处理器 -->
+<!-- 		<bean class="ln.spring.test.MyBeanPostProcessor"/> -->
+<!-- 		<bean id="beanPostCat" class="ln.spring.test.Cat" p:name="机器猫"/>  -->
+<!--    <bean id="myEvent" class="ln.spring.test.MyEvent"> -->
+<!--    		<constructor-arg value="test"/> -->
+<!--    		<constructor-arg value="12"/> -->
+<!--    		<constructor-arg value="lisi"/> -->
+<!--    </bean> -->
+   
+<!--    <bean id="myListener" class="ln.spring.test.MyListener"/> -->
+   
+   
+<!--    静态工厂创建实例bean -->
+<!--    <bean id="sTeacher" class="ln.spring.test.SFactory" factory-method="getPerson"> -->
+<!--    		<constructor-arg value="teacher"/> -->
+<!--    		<property name="name" value="张三"/> -->
+<!--    </bean> -->
+   
+<!--       <bean id="sStudent" class="ln.spring.test.SFactory" factory-method="getPerson"> -->
+<!--    		<constructor-arg value="student"/> -->
+<!--    		<property name="name" value="李四"/> -->
+<!--    </bean> -->
+<!--    实例工厂创建bean -->
+<!-- 	<bean id="beanFactory" class="ln.spring.test.BeanFactory"/> -->
+<!-- 	<bean id="beanTeacher" factory-bean="beanFactory" factory-method="getPerson"> -->
+<!-- 		<constructor-arg value="teacher"/> -->
+<!-- 		<property name="name" value="张三"/> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="beanStudent" factory-bean="beanFactory" factory-method="getPerson"> -->
+<!-- 		<constructor-arg value="student"/> -->
+<!-- 		<property name="name" value="李四"/> -->
+<!-- 	</bean> -->
+<!-- 		抽象bean  只能被继承的bean 不可以创建实例  即使设置了class属性-->
+<!-- 	<bean id="abstractBean"  abstract="true"> -->
+<!-- 		<property name="name" value="lisi"/> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="childTeacher" parent="abstractBean" class="ln.spring.test.Teacher"/> -->
+<!-- 	<bean id="childStudent" parent="abstractBean" class="ln.spring.test.Student"/> -->
+	<!--     开启aop零配置 -->
+<!--     	<aop:aspectj-autoproxy/> -->
+		<bean id="readerAction" class="ln.bookSystem.implAction.ReaderActionImpl" autowire="byName"/>
+		<bean id="readerService" class="ln.bookSystem.implService.ReaderServiceImpl"/>
+		<bean id="aspectClass" class="ln.spring.test.AspectJClass"/>
+		<aop:config>
+			<aop:pointcut id="point" expression="execution(* ln.bookSystem.implService.*.*(..)) and args(java.lang.String,..)"/>
+			<aop:aspect ref="aspectClass">
+				<aop:before method="addBefore" pointcut-ref="point"/>
+<!-- 				不管被增强方法有没有正常执行都会织入此方法 -->
+				<aop:after method="addAfter" pointcut-ref="point"/>
+<!-- 				只有目标方法 正常执行完成  才会执行此方法-->
+				<aop:after-returning method="afterRenturnning" pointcut-ref="point" returning="result"/>
+<!-- 		值得注意的是此方法的e参数的类型会和实际抛出异常的类型相比较 如果实际抛出异常与e类型相同或者是e类型的子类那么此方法才会执行 -->
+				<aop:after-throwing method="afterThrowing" pointcut-ref="point" throwing="e"/>
+<!-- 				不管被增强方法有没有正常执行此方法都会执行完成	  -->
+				<aop:around method="addAround" pointcut-ref="point"/>
+			</aop:aspect>
+		</aop:config>
+		
+<!-- 		ehcache缓存的配置 -->
+		<bean id="cacheTest" class="ln.spring.test.CacheTest"/>
+		<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+		p:configLocation="classpath:ehcache.xml"
+		p:shared="false"
+		/>
+		<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		p:cacheManager-ref="ehCacheManager"
+		/>
+		
+</beans>

@@ -6,17 +6,6 @@
 	
 	<hibernate-configuration>
 		<session-factory>
-			<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-			<property name="connection.url">jdbc:mysql://localhost:3306/ssh?serverTimezone=GMT%2B8</property>
-			<property name="connection.username">root</property>
-			<property name="connection.password">root</property>
-			<property name="hibernate.c3p0.max_size">20</property>
-			<property name="hibernate.c3p0.min_size">1</property>
-			<property name="hibernate.c3p0.timeout">5000</property>
-			<property name="hibernate.c3p0.Max_statements">100</property>
-			<property name="hibernate.c3p0.idle_test_period">3000</property>
-			<property name="hibernate.c3p0.acquire_increment">2</property>
-			<property name="hibernate.c3p0.validate">true</property>
 <!-- 			制定数据库的方言 -->
 			<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 <!-- 			指定是否在控制台输出hibernate生成的sql语句 -->
@@ -33,9 +22,11 @@
 <!-- 			<mapping class="ln.hibernate.gunalianyingshe.LocalInf"/> -->
 <!-- 			<mapping class="ln.hibernate.gunalianyingshe.Person"/> -->
 <!-- 			<mapping class="ln.hibernate.gunalianyingshe.Address"/> -->
-			<mapping class="ln.hibernate.yingshecelue.Customer"/>
-			<mapping class="ln.hibernate.yingshecelue.Employee"/>
-			<mapping class="ln.hibernate.yingshecelue.Manager"/>
-			<mapping class="ln.hibernate.yingshecelue.Person"/>
+<!-- 			<mapping class="ln.hibernate.yingshecelue.Customer"/> -->
+<!-- 			<mapping class="ln.hibernate.yingshecelue.Employee"/> -->
+<!-- 			<mapping class="ln.hibernate.yingshecelue.Manager"/> -->
+<!-- 			<mapping class="ln.hibernate.yingshecelue.Person"/> -->
+<!-- 			<mapping class="ln.hibernate.test.TestClass"/> -->
+
 		</session-factory>
 	</hibernate-configuration>
